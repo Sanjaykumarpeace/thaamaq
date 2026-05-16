@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Thamaq Restaurant – Premium Tandoori, Biryani, Arabian & Continental cuisine in Bengaluru. Dine in or order online." />
+  <meta name="keywords" content="Thamaq Restaurant, Biryani Bengaluru, Tandoori, Alfaham, North Indian, Chinese, Arabian food" />
+  <title>Thamaq Restaurant | Authentic Flavours, Royal Experience</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ══════════════════════ NOTIFICATION BANNER ══════════════════════ -->
+<div class="notif-banner" id="notifBanner">
+  <span>🔥 Special Offer: Get 20% off on orders above ₹500 — Use code <strong>THAMAQ20</strong></span>
+  <button class="notif-close" onclick="document.getElementById('notifBanner').style.display='none'">✕</button>
+</div>
+
+<!-- ══════════════════════ NAVIGATION ══════════════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="#home" class="logo">
+      <span class="logo-icon">🍽</span>
+      <div>
+        <span class="logo-name">THAMAQ</span>
+        <span class="logo-sub">RESTAURANT</span>
+      </div>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#menu" class="nav-link">Menu</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#reservation" class="nav-link">Reserve</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <i class="fas fa-sun" id="themeIcon"></i>
+      </button>
+      <button class="cart-btn" onclick="toggleCart()">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="btn-primary nav-cta" onclick="scrollTo('reservation')">Book Table</button>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════ HERO ══════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-overlay"></div>
+    <div class="hero-particles" id="particles"></div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-label">✦ Est. in Bengaluru ✦</p>
+    <h1 class="hero-title">
+      <span class="hero-word" style="animation-delay:.1s">Royal</span>
+      <span class="hero-word accent" style="animation-delay:.3s">Flavours</span>
+      <span class="hero-word" style="animation-delay:.5s">Await</span>
+    </h1>
+    <p class="hero-sub">From sizzling Tandoor to aromatic Biryanis — a culinary journey across India, Arabia & beyond.</p>
+    <div class="hero-btns">
+      <button class="btn-primary lg" onclick="scrollTo('menu')">Explore Menu</button>
+      <button class="btn-ghost lg" onclick="scrollTo('reservation')">
+        <i class="fas fa-calendar-alt"></i> Reserve a Table
+      </button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num" data-target="150">0</span><span>+</span><small>Dishes</small></div>
+      <div class="stat-div"></div>
+      <div class="stat"><span class="stat-num" data-target="5000">0</span><span>+</span><small>Happy Guests</small></div>
+      <div class="stat-div"></div>
+      <div class="stat"><span class="stat-num" data-target="8">0</span><span>+</span><small>Years</small></div>
+    </div>
+  </div>
+
+  <div class="hero-scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════ CUISINE STRIPS ══════════════════════ -->
+<div class="cuisine-strip">
+  <div class="strip-inner">
+    <span>🍗 Tandoori &nbsp;•</span>
+    <span>&nbsp; 🥘 Biryani &nbsp;•</span>
+    <span>&nbsp; 🔥 Alfaham &nbsp;•</span>
+    <span>&nbsp; 🍜 Indo-Chinese &nbsp;•</span>
+    <span>&nbsp; 🍝 Continental &nbsp;•</span>
+    <span>&nbsp; 🍗 Grilled Chicken &nbsp;•</span>
+    <span>&nbsp; 🥣 Manchow Soup &nbsp;•</span>
+    <span>&nbsp; 🍗 Tandoori &nbsp;•</span>
+    <span>&nbsp; 🥘 Biryani &nbsp;•</span>
+    <span>&nbsp; 🔥 Alfaham &nbsp;•</span>
+  </div>
+</div>
+
+<!-- ══════════════════════ FEATURED DISHES ══════════════════════ -->
+<section class="section" id="featured">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Chef's Selection</p>
+      <h2 class="section-title">Signature <span class="accent">Dishes</span></h2>
+      <p class="section-desc">Handpicked favourites that define the Thamaq experience</p>
+    </div>
+
+    <div class="featured-grid">
+      <div class="feat-card feat-large" data-aos="fade-right">
+        <img src="https://images.unsplash.com/photo-1567337710282-00832b415979?w=700&q=80" alt="Chicken Biryani" class="feat-img" />
+        <div class="feat-overlay">
+          <span class="feat-tag">Bestseller</span>
+          <h3>Hyderabadi Chicken Biryani</h3>
+          <p>Slow-cooked basmati rice layered with spiced chicken & saffron</p>
+          <div class="feat-footer">
+            <span class="price">₹ 320</span>
+            <button class="btn-add" onclick="addToCart('Chicken Biryani', 320)">+ Add</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="feat-col">
+        <div class="feat-card" data-aos="fade-up" data-aos-delay="100">
+          <img src="https://images.unsplash.com/photo-1598514982205-f36b96d1e9db?w=400&q=80" alt="Alfaham" class="feat-img" />
+          <div class="feat-overlay">
+            <span class="feat-tag">Arabian</span>
+            <h3>Alfaham Grilled Chicken</h3>
+            <div class="feat-footer">
+              <span class="price">₹ 450</span>
+              <button class="btn-add" onclick="addToCart('Alfaham Grilled Chicken', 450)">+ Add</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="feat-card" data-aos="fade-up" data-aos-delay="200">
+          <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=80" alt="Tandoori" class="feat-img" />
+          <div class="feat-overlay">
+            <span class="feat-tag">Tandoor</span>
+            <h3>Tandoori Platter</h3>
+            <div class="feat-footer">
+              <span class="price">₹ 560</span>
+              <button class="btn-add" onclick="addToCart('Tandoori Platter', 560)">+ Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ SPECIAL OFFER ══════════════════════ -->
+<section class="offer-section">
+  <div class="offer-inner">
+    <div class="offer-text" data-aos="fade-right">
+      <p class="offer-label">Limited Time</p>
+      <h2>Family Feast<br/><span class="accent">Deal</span></h2>
+      <p>4 Biryanis + 2 Starters + 4 Drinks — all for just <strong>₹1,299</strong>. Available Fri–Sun.</p>
+      <button class="btn-primary lg" onclick="scrollTo('reservation')">Grab the Deal</button>
+    </div>
+    <div class="offer-img-wrap" data-aos="fade-left">
+      <img src="https://images.unsplash.com/photo-1567337710282-00832b415979?w=500&q=80" alt="Family Feast" class="offer-img" />
+      <div class="offer-badge">SAVE<br/>30%</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ MENU ══════════════════════ -->
+<section class="section" id="menu">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Our Menu</p>
+      <h2 class="section-title">What We <span class="accent">Serve</span></h2>
+    </div>
+
+    <!-- Search & Filter -->
+    <div class="menu-controls">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="menuSearch" placeholder="Search dishes…" oninput="filterMenu()" />
+      </div>
+      <div class="cat-tabs" id="catTabs">
+        <button class="cat-tab active" onclick="filterCat('all', this)">All</button>
+        <button class="cat-tab" onclick="filterCat('indian', this)">🇮🇳 Indian</button>
+        <button class="cat-tab" onclick="filterCat('arabian', this)">🥙 Arabian</button>
+        <button class="cat-tab" onclick="filterCat('chinese', this)">🥢 Chinese</button>
+        <button class="cat-tab" onclick="filterCat('continental', this)">🍝 Continental</button>
+      </div>
+    </div>
+
+    <!-- Menu Grid -->
+    <div class="menu-grid" id="menuGrid">
+      <!-- Indian -->
+      <div class="menu-card" data-cat="indian" data-name="chicken biryani">
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1567337710282-00832b415979?w=300&q=70" alt="Chicken Biryani" /><span class="veg-dot non-veg"></span></div>
+        <div class="menu-info">
+          <h4>Chicken Biryani</h4>
+          <p>Aromatic basmati, tender chicken, golden saffron</p>
+          <div class="menu-footer"><span class="price">₹ 320</span><button class="btn-add sm" onclick="addToCart('Chicken Biryani',320)">+ Add</button></div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-cat="indian" data-name="mutton biryani">
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1630851840628-48c25bc6e3a0?w=300&q=70" alt="Mutton Biryani" /><span class="veg-dot non-veg"></span></div>
+        <div class="menu-info">
+          <h4>Mutton Biryani</h4>
+          <p>Slow-cooked mutton with whole spices & caramelised onions</p>
+          <div class="menu-footer"><span class="price">₹ 380</span><button class="btn-add sm" onclick="addToCart('Mutton Biryani',380)">+ Add</button></div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-cat="indian" data-name="butter chicken">
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=300&q=70" alt="Butter Chicken" /><span class="veg-dot non-veg"></span></div>
+        <div class="menu-info">
+          <h4>Butter Chicken</h4>
+          <p>Silky tomato-cream gravy with tandoor-kissed chicken</p>
+          <div class="menu-footer"><span class="price">₹ 340</span><button class="btn-add sm" onclick="addToCart('Butter Chicken',340)">+ Add</button></div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-cat="indian" data-name="paneer tikka">
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1618449840665-9ed506d73a34?w=300&q=70" alt="Paneer Tikka" /><span class="veg-dot veg"></span></div>
+        <div class="menu-info">
+          <h4>Paneer Tikka</h4>
+          <p>Char-grilled paneer cubes marinated in yogurt & spices</p>
+          <div class="menu-footer"><span class="price">₹ 280</span><button class="btn-add sm" onclick="addToCart('Paneer Tikka',280)">+ Add</button></div>
+        </div>
+      </div>
+
+      <!-- Arabian -->
+      <div class="menu-card" data-cat="arabian" data-name="alfaham grilled chicken">
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1598514982205-f36b96d1e9db?w=300&q=70" alt="Alfaham" /><span class="veg-dot non-veg"></span></div>
+        <div class="menu-info">
+          <h4>Alfaham Grilled Chicken</h4>
+          <p>Whole chicken with Arabic spice blend, charcoal grilled</p>
+          <div class="menu-footer"><span class="price">₹ 450</span><button class="btn-add sm" onclick="addToCart('Alfaham Chicken',450)">+ Add</button></div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-cat="arabian" data-name="arabic grilled fish">
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1614976633082-21e8f3e6a8e3?w=300&q=70" alt="Grilled Fish" /><span class="veg-dot non-veg"></span></div>
+        <div class="menu-info">
+          <h4>Arabic Grilled Fish</h4>
+          <p>Fresh pomfret with lemon, herbs & Arabian marinade</p>
+          <div class="menu-footer"><span class="price">₹ 520</span><button class="btn-add sm" onclick="addToCart('Arabic Grilled Fish',520)">+ Add</button></div>
+        </div>
+      </div>
+
+      <!-- Chinese -->
+      <div class="menu-card" data-cat="chinese" data-name="manchow soup">
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=300&q=70" alt="Manchow Soup" /><span class="veg-dot non-veg"></span></div>
+        <div class="menu-info">
+          <h4>Manchow Soup</h4>
+          <p>Hot & sour broth with crispy noodles & veggies</p>
+          <div class="menu-footer"><span class="price">₹ 180</span><button class="btn-add sm" onclick="addToCart('Manchow Soup',180)">+ Add</button></div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-cat="chinese" data-name="chilli chicken">
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=300&q=70" alt="Chilli Chicken" /><span class="veg-dot non-veg"></span></div>
+        <div class="menu-info">
+          <h4>Chilli Chicken</h4>
+          <p>Crispy fried chicken tossed in fiery Indo-Chinese sauce</p>
+          <div class="menu-footer"><span class="price">₹ 280</span><button class="btn-add sm" onclick="addToCart('Chilli Chicken',280)">+ Add</button></div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-cat="chinese" data-name="hakka noodles">
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1555126634-323283e090fa?w=300&q=70" alt="Hakka Noodles" /><span class="veg-dot veg"></span></div>
+        <div class="menu-info">
+          <h4>Veg Hakka Noodles</h4>
+          <p>Stir-fried noodles with crisp vegetables & soy sauce</p>
+          <div class="menu-footer"><span class="price">₹ 200</span><button class="btn-add sm" onclick="addToCart('Hakka Noodles',200)">+ Add</button></div>
+        </div>
+      </div>
+
+      <!-- Continental -->
+      <div class="menu-card" data-cat="continental" data-name="pasta arabiata">
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?w=300&q=70" alt="Pasta" /><span class="veg-dot veg"></span></div>
+        <div class="menu-info">
+          <h4>Penne Arrabiata</h4>
+          <p>Penne in spicy tomato-garlic sauce with fresh herbs</p>
+          <div class="menu-footer"><span class="price">₹ 240</span><button class="btn-add sm" onclick="addToCart('Penne Arrabiata',240)">+ Add</button></div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-cat="continental" data-name="chicken pasta">
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=300&q=70" alt="Chicken Pasta" /><span class="veg-dot non-veg"></span></div>
+        <div class="menu-info">
+          <h4>Creamy Chicken Pasta</h4>
+          <p>Al dente pasta in a rich cream-mushroom sauce</p>
+          <div class="menu-footer"><span class="price">₹ 290</span><button class="btn-add sm" onclick="addToCart('Creamy Chicken Pasta',290)">+ Add</button></div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-cat="indian" data-name="tandoori platter">
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=300&q=70" alt="Tandoori Platter" /><span class="veg-dot non-veg"></span></div>
+        <div class="menu-info">
+          <h4>Tandoori Mixed Platter</h4>
+          <p>Seekh kebab, chicken tikka & reshmi kebab</p>
+          <div class="menu-footer"><span class="price">₹ 560</span><button class="btn-add sm" onclick="addToCart('Tandoori Platter',560)">+ Add</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-empty hidden" id="menuEmpty">
+      <i class="fas fa-search"></i>
+      <p>No dishes found. Try another search!</p>
+    </div>
+
+    <div class="qr-section">
+      <div class="qr-box">
+        <div class="qr-code" id="qrCode"></div>
+        <div>
+          <h4>Scan for Full Menu</h4>
+          <p>Point your camera at the QR code to view our complete digital menu on Zomato</p>
+          <a href="https://www.zomato.com/bangalore/thamaq-restaurant-yelahanka-bangalore/order" target="_blank" class="btn-ghost sm">View Online Menu</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ ABOUT ══════════════════════ -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-imgs" data-aos="fade-right">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500&q=80" alt="Restaurant Interior" class="about-img about-img-main" />
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=300&q=80" alt="Kitchen" class="about-img about-img-sm" />
+        <div class="about-exp-badge"><span>8+</span><small>Years of<br/>Excellence</small></div>
+      </div>
+      <div class="about-text" data-aos="fade-left">
+        <p class="section-label">Our Story</p>
+        <h2 class="section-title">Where Every Meal<br/>Is a <span class="accent">Memory</span></h2>
+        <p>Thamaq Restaurant was founded with a simple dream: to bring the finest flavours of India, Arabia, and beyond to the heart of Bengaluru. Nestled on Bagalur Main Road, we have been serving our community for over 8 years.</p>
+        <p style="margin-top:1rem">Our chefs masterfully blend traditional recipes with contemporary techniques, ensuring every bite transports you to the origins of that cuisine — be it the North Indian frontier, the streets of Hyderabad, or the grills of Arabia.</p>
+        <div class="about-pillars">
+          <div class="pillar"><i class="fas fa-fire"></i><span>Live Tandoor</span></div>
+          <div class="pillar"><i class="fas fa-leaf"></i><span>Fresh Ingredients</span></div>
+          <div class="pillar"><i class="fas fa-award"></i><span>Authentic Recipes</span></div>
+          <div class="pillar"><i class="fas fa-heart"></i><span>Made with Love</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gallery -->
+    <div class="gallery-header section-header" style="margin-top:5rem">
+      <p class="section-label">Gallery</p>
+      <h2 class="section-title">A Visual <span class="accent">Feast</span></h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item gi-tall"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80" alt="Interior" /></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1567337710282-00832b415979?w=400&q=80" alt="Biryani" /></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1598514982205-f36b96d1e9db?w=400&q=80" alt="Alfaham" /></div>
+      <div class="gallery-item gi-wide"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Kitchen" /></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=80" alt="Tandoori" /></div>
+    </div>
+
+    <!-- Team -->
+    <div class="section-header" style="margin-top:5rem">
+      <p class="section-label">The Team</p>
+      <h2 class="section-title">Masters of <span class="accent">Craft</span></h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card" data-aos="fade-up">
+        <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=300&q=80" alt="Head Chef" />
+        <h4>Chef Rajan Kumar</h4>
+        <span>Head Chef · Tandoor Specialist</span>
+      </div>
+      <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+        <img src="https://images.unsplash.com/photo-1595273670150-bd0c3c392e46?w=300&q=80" alt="Arabian Chef" />
+        <h4>Chef Yusuf Al-Rashid</h4>
+        <span>Arabian Cuisine Expert</span>
+      </div>
+      <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+        <img src="https://images.unsplash.com/photo-1566554273541-37a9ca77b91f?w=300&q=80" alt="Biryani Chef" />
+        <h4>Chef Saleem Pasha</h4>
+        <span>Biryani Maestro</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ TESTIMONIALS ══════════════════════ -->
+<section class="testimonials-section">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Guest Reviews</p>
+      <h2 class="section-title">What Our <span class="accent">Guests Say</span></h2>
+    </div>
+
+    <div class="testimonial-slider" id="testimonialSlider">
+      <div class="testimonial-track" id="testimonialTrack">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"The Alfaham here is hands-down the best in Bengaluru. Perfectly grilled, incredibly juicy. We come every weekend!"</p>
+          <div class="reviewer"><img src="https://i.pravatar.cc/60?img=1" alt="Priya S" /><div><strong>Priya Sharma</strong><small>Bengaluru</small></div></div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"Mutton Biryani is absolutely divine! The dum cooking makes it exceptionally flavourful. Must try for biryani lovers."</p>
+          <div class="reviewer"><img src="https://i.pravatar.cc/60?img=11" alt="Arjun M" /><div><strong>Arjun Mehta</strong><small>Yelahanka, Bengaluru</small></div></div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★☆</div>
+          <p>"Great ambiance, warm staff, and the Tandoori Platter is a showstopper. Highly recommend for family dinners."</p>
+          <div class="reviewer"><img src="https://i.pravatar.cc/60?img=5" alt="Fatima K" /><div><strong>Fatima Khan</strong><small>Hebbal, Bengaluru</small></div></div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"Manchow soup and Chilli Chicken combo is unbeatable. Indo-Chinese done right. Quick service too!"</p>
+          <div class="reviewer"><img src="https://i.pravatar.cc/60?img=15" alt="Rohit D" /><div><strong>Rohit Das</strong><small>Bagalur, Bengaluru</small></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="slider-dots" id="sliderDots"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════ RESERVATION ══════════════════════ -->
+<section class="section" id="reservation">
+  <div class="container">
+    <div class="reservation-grid">
+      <div class="res-info" data-aos="fade-right">
+        <p class="section-label">Reserve a Table</p>
+        <h2 class="section-title">Book Your <span class="accent">Experience</span></h2>
+        <p>Reserve your spot and enjoy a seamless dining experience. We recommend booking at least a day in advance for weekends.</p>
+        <div class="res-details">
+          <div class="res-detail"><i class="fas fa-clock"></i><div><strong>Opening Hours</strong><span>Monday – Sunday: 12:00 PM – 1:00 AM</span></div></div>
+          <div class="res-detail"><i class="fas fa-map-marker-alt"></i><div><strong>Location</strong><span>Bagalur Main Rd, opp. Indian Oil Petrol Pump, Bengaluru 560064</span></div></div>
+          <div class="res-detail"><i class="fas fa-phone"></i><div><strong>Reservations</strong><span>+91 07902227103</span></div></div>
+        </div>
+      </div>
+
+      <form class="res-form glass-card" id="reservationForm" onsubmit="submitReservation(event)" data-aos="fade-left">
+        <h3>Table Reservation</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" placeholder="+91 XXXXX XXXXX" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Date</label>
+            <input type="date" id="resDate" required />
+          </div>
+          <div class="form-group">
+            <label>Time</label>
+            <select required>
+              <option value="">Select time</option>
+              <option>12:00 PM</option><option>1:00 PM</option><option>2:00 PM</option>
+              <option>3:00 PM</option><option>6:00 PM</option><option>7:00 PM</option>
+              <option>8:00 PM</option><option>9:00 PM</option><option>10:00 PM</option>
+              <option>11:00 PM</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Guests</label>
+            <select required>
+              <option value="">Select guests</option>
+              <option>1 Person</option><option>2 People</option><option>3 People</option>
+              <option>4 People</option><option>5-6 People</option><option>7-10 People</option>
+              <option>10+ People</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Occasion</label>
+            <select>
+              <option value="">Select occasion</option>
+              <option>Birthday</option><option>Anniversary</option><option>Business Dinner</option>
+              <option>Date Night</option><option>Family Gathering</option><option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Special Requests</label>
+          <textarea placeholder="Any dietary needs or special arrangements…" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn-primary full">Confirm Reservation</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ CONTACT ══════════════════════ -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Get In Touch</p>
+      <h2 class="section-title">Contact <span class="accent">Us</span></h2>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info" data-aos="fade-right">
+        <div class="contact-card glass-card">
+          <i class="fas fa-map-marker-alt"></i>
+          <h4>Find Us</h4>
+          <p>Bagalur Main Rd, opp. Indian Oil Petrol Pump, Munneshwara Block, Dwarka Nagar, Kattigenahalli, Bengaluru, Karnataka 560064</p>
+        </div>
+        <div class="contact-card glass-card">
+          <i class="fas fa-phone"></i>
+          <h4>Call Us</h4>
+          <p><a href="tel:07902227103">+91 07902227103</a></p>
+        </div>
+        <div class="contact-card glass-card">
+          <i class="fas fa-clock"></i>
+          <h4>Hours</h4>
+          <p>Monday – Sunday<br/>12:00 PM – 1:00 AM</p>
+        </div>
+        <div class="social-links">
+          <a href="#" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.zomato.com/bangalore/thamaq-restaurant-yelahanka-bangalore/order" target="_blank" class="social-btn" aria-label="Zomato"><i class="fas fa-utensils"></i></a>
+          <a href="#" class="social-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <div class="contact-right" data-aos="fade-left">
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.097!2d77.6177577!3d13.1219478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae197d9384cd9d%3A0x11226b272c6be0b2!2sThamaq%20Restaurant%20%7C%20Bagalur%20Cross!5e0!3m2!1sen!2sin!4v1234567890"
+            width="100%" height="280" style="border:0;border-radius:12px" allowfullscreen loading="lazy">
+          </iframe>
+          <a href="https://google.com/maps/place/Thamaq+Restaurant+%7C+Bagalur+Cross/@13.1219478,77.6177577,17z" target="_blank" class="btn-primary" style="display:block;text-align:center;margin-top:1rem">
+            <i class="fas fa-directions"></i> Get Directions
+          </a>
+        </div>
+
+        <form class="contact-form glass-card" onsubmit="submitContact(event)">
+          <h4>Send a Message</h4>
+          <div class="form-group">
+            <input type="text" placeholder="Your Name" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group"><input type="email" placeholder="Email Address" required /></div>
+            <div class="form-group"><input type="tel" placeholder="Phone Number" /></div>
+          </div>
+          <div class="form-group"><textarea placeholder="Your message…" rows="4" required></textarea></div>
+          <button type="submit" class="btn-primary full">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ FOOTER ══════════════════════ -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#home" class="logo"><span class="logo-icon">🍽</span><div><span class="logo-name">THAMAQ</span><span class="logo-sub">RESTAURANT</span></div></a>
+      <p>Authentic flavours from India, Arabia & beyond. Serving Bengaluru since 2016.</p>
+    </div>
+    <div class="footer-links">
+      <h5>Quick Links</h5>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#reservation">Reserve</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h5>Order Online</h5>
+      <ul>
+        <li><a href="https://www.zomato.com/bangalore/thamaq-restaurant-yelahanka-bangalore/order" target="_blank">Zomato</a></li>
+        <li><a href="https://www.swiggy.com" target="_blank">Swiggy</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h5>Contact</h5>
+      <p><i class="fas fa-phone"></i> +91 07902227103</p>
+      <p><i class="fas fa-clock"></i> Mon–Sun: 12 PM – 1 AM</p>
+      <div class="social-links" style="margin-top:1rem">
+        <a href="#" class="social-btn sm"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-btn sm"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="social-btn sm"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Thamaq Restaurant. All rights reserved.</p>
+    <p>Crafted with ❤ in Bengaluru</p>
+  </div>
+</footer>
+
+<!-- ══════════════════════ CART SIDEBAR ══════════════════════ -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Your Order</h3>
+    <button onclick="toggleCart()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty"><i class="fas fa-shopping-bag"></i><p>Your cart is empty</p></div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total"><span>Total</span><span id="cartTotal">₹ 0</span></div>
+    <button class="btn-primary full" onclick="checkout()">Proceed to Checkout</button>
+  </div>
+</div>
+
+<!-- ══════════════════════ AI CHATBOT ══════════════════════ -->
+<div class="chatbot-widget" id="chatbotWidget">
+  <div class="chatbot-header">
+    <span>🤖 Thamaq AI Assistant</span>
+    <button onclick="toggleChatbot()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="chatbot-messages" id="chatMessages">
+    <div class="chat-msg bot">
+      <span>Hi! I'm the Thamaq virtual assistant 🍽️ I can help you with our menu, reservations, or directions. What do you need?</span>
+    </div>
+  </div>
+  <div class="chatbot-input">
+    <input type="text" id="chatInput" placeholder="Ask about our menu…" onkeypress="if(event.key==='Enter')sendChat()" />
+    <button onclick="sendChat()"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>
+<button class="chatbot-fab" id="chatbotFab" onclick="toggleChatbot()" aria-label="Chat">
+  <i class="fas fa-comments"></i>
+</button>
+
+<!-- ══════════════════════ TOAST ══════════════════════ -->
+<div class="toast" id="toast"></div>
+
+<!-- ══════════════════════ LOGIN MODAL ══════════════════════ -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal glass-card">
+    <button class="modal-close" onclick="closeModal('loginModal')"><i class="fas fa-times"></i></button>
+    <div class="modal-tabs">
+      <button class="modal-tab active" onclick="switchTab('login', this)">Login</button>
+      <button class="modal-tab" onclick="switchTab('signup', this)">Sign Up</button>
+    </div>
+    <div id="loginForm">
+      <div class="form-group"><input type="email" placeholder="Email" /></div>
+      <div class="form-group"><input type="password" placeholder="Password" /></div>
+      <button class="btn-primary full" onclick="showToast('Logged in successfully! 🎉')">Login</button>
+    </div>
+    <div id="signupForm" class="hidden">
+      <div class="form-group"><input type="text" placeholder="Full Name" /></div>
+      <div class="form-group"><input type="email" placeholder="Email" /></div>
+      <div class="form-group"><input type="password" placeholder="Password" /></div>
+      <button class="btn-primary full" onclick="showToast('Account created! Welcome to Thamaq 🎉')">Create Account</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thamaq Admin Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --red: #e8001d; --bg: #0d0d0d; --bg2: #141414; --bg3: #1c1c1c;
+      --text: #e8e8e8; --text-muted: #888; --border: rgba(255,255,255,0.08);
+      --card: rgba(255,255,255,0.04); --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
+    .sidebar {
+      width: 240px; background: var(--bg2); border-right: 1px solid var(--border);
+      padding: 2rem 1rem; display: flex; flex-direction: column; gap: .5rem; flex-shrink: 0;
+    }
+    .sidebar-logo { font-family: 'Bebas Neue'; font-size: 1.5rem; color: var(--red); letter-spacing: .1em; margin-bottom: 1.5rem; padding-left: .75rem; }
+    .sidebar-item {
+      display: flex; align-items: center; gap: .75rem;
+      padding: .75rem; border-radius: 8px;
+      font-size: .9rem; color: var(--text-muted); cursor: pointer; transition: all .2s;
+    }
+    .sidebar-item:hover, .sidebar-item.active { background: var(--card); color: var(--text); }
+    .sidebar-item.active { border-left: 3px solid var(--red); }
+    .sidebar-item i { width: 18px; color: var(--red); }
+    .main { flex: 1; padding: 2rem; overflow-y: auto; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; }
+    .topbar h1 { font-size: 1.4rem; font-weight: 700; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; margin-bottom: 2rem; }
+    .stat-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.5rem; display: flex; align-items: center; gap: 1rem; transition: all .3s;
+    }
+    .stat-card:hover { border-color: var(--red); transform: translateY(-3px); }
+    .stat-icon { width: 52px; height: 52px; border-radius: 12px; background: rgba(232,0,29,.12); color: var(--red); font-size: 1.4rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .stat-value { font-family: 'Bebas Neue'; font-size: 2rem; color: var(--red); line-height: 1; }
+    .stat-label { font-size: .8rem; color: var(--text-muted); margin-top: .2rem; }
+    .section-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 1.25rem; }
+    .table-wrap { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 2rem; }
+    table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    th { padding: .85rem 1rem; text-align: left; background: var(--bg3); color: var(--text-muted); font-weight: 600; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+    td { padding: .85rem 1rem; border-top: 1px solid var(--border); }
+    tr:hover td { background: rgba(232,0,29,.04); }
+    .badge { display: inline-block; padding: .25rem .7rem; border-radius: 50px; font-size: .72rem; font-weight: 700; letter-spacing: .04em; }
+    .badge-pending { background: rgba(255,193,7,.15); color: #ffc107; }
+    .badge-confirmed { background: rgba(76,175,80,.15); color: #4caf50; }
+    .badge-cancelled { background: rgba(232,0,29,.15); color: var(--red); }
+    .refresh-btn { background: var(--red); color: white; padding: .5rem 1rem; border-radius: 8px; font-size: .85rem; font-weight: 600; cursor: pointer; border: none; font-family: inherit; transition: all .2s; }
+    .refresh-btn:hover { background: #ff2a3f; }
+    @media(max-width:768px) { .sidebar { width: 60px; } .sidebar-logo, .sidebar-item span { display: none; } .main { padding: 1rem; } }
+  </style>
+</head>
+<body>
+
+<nav class="sidebar">
+  <div class="sidebar-logo">🍽 THAMAQ</div>
+  <div class="sidebar-item active"><i class="fas fa-chart-bar"></i><span>Dashboard</span></div>
+  <div class="sidebar-item"><i class="fas fa-calendar-check"></i><span>Reservations</span></div>
+  <div class="sidebar-item"><i class="fas fa-shopping-bag"></i><span>Orders</span></div>
+  <div class="sidebar-item"><i class="fas fa-users"></i><span>Customers</span></div>
+  <div class="sidebar-item"><i class="fas fa-envelope"></i><span>Messages</span></div>
+  <div class="sidebar-item" onclick="window.location='/'"><i class="fas fa-arrow-left"></i><span>Back to Site</span></div>
+</nav>
+
+<main class="main">
+  <div class="topbar">
+    <h1>Admin Dashboard</h1>
+    <button class="refresh-btn" onclick="loadStats()"><i class="fas fa-sync-alt"></i> Refresh</button>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-grid" id="statsGrid">
+    <div class="stat-card"><div class="stat-icon"><i class="fas fa-calendar-check"></i></div><div><div class="stat-value" id="statRes">—</div><div class="stat-label">Total Reservations</div></div></div>
+    <div class="stat-card"><div class="stat-icon"><i class="fas fa-clock"></i></div><div><div class="stat-value" id="statPending">—</div><div class="stat-label">Pending Reservations</div></div></div>
+    <div class="stat-card"><div class="stat-icon"><i class="fas fa-users"></i></div><div><div class="stat-value" id="statUsers">—</div><div class="stat-label">Registered Users</div></div></div>
+    <div class="stat-card"><div class="stat-icon"><i class="fas fa-shopping-bag"></i></div><div><div class="stat-value" id="statOrders">—</div><div class="stat-label">Total Orders</div></div></div>
+    <div class="stat-card"><div class="stat-icon"><i class="fas fa-envelope"></i></div><div><div class="stat-value" id="statMsg">—</div><div class="stat-label">Contact Messages</div></div></div>
+  </div>
+
+  <!-- Reservations Table -->
+  <div class="section-title">Recent Reservations</div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>#</th><th>Name</th><th>Phone</th><th>Date</th><th>Time</th><th>Guests</th><th>Status</th></tr></thead>
+      <tbody id="reservationsTable"><tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:2rem">Loading...</td></tr></tbody>
+    </table>
+  </div>
+</main>
+
+<script>
+async function loadStats() {
+  try {
+    const res = await fetch('/api/admin/stats');
+    if (!res.ok) throw new Error('Backend not running');
+    const data = await res.json();
+    document.getElementById('statRes').textContent = data.total_reservations;
+    document.getElementById('statPending').textContent = data.pending_reservations;
+    document.getElementById('statUsers').textContent = data.total_users;
+    document.getElementById('statOrders').textContent = data.total_orders;
+    document.getElementById('statMsg').textContent = data.total_messages;
+  } catch(e) {
+    // Demo data when backend not running
+    ['statRes','statPending','statUsers','statOrders','statMsg'].forEach((id,i) => {
+      document.getElementById(id).textContent = [24, 8, 132, 67, 15][i];
+    });
+  }
+}
+
+async function loadReservations() {
+  const tbody = document.getElementById('reservationsTable');
+  try {
+    const res = await fetch('/api/reservations');
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+    if (!data.length) { tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text-muted)">No reservations yet</td></tr>'; return; }
+    tbody.innerHTML = data.map(r => `
+      <tr>
+        <td>${r.id}</td><td>${r.name}</td><td>${r.phone}</td>
+        <td>${r.date}</td><td>${r.time}</td><td>${r.guests}</td>
+        <td><span class="badge badge-${r.status}">${r.status}</span></td>
+      </tr>`).join('');
+  } catch(e) {
+    tbody.innerHTML = `
+      <tr><td>1</td><td>Priya Sharma</td><td>9876543210</td><td>2026-05-15</td><td>8:00 PM</td><td>4 People</td><td><span class="badge badge-confirmed">confirmed</span></td></tr>
+      <tr><td>2</td><td>Arjun Mehta</td><td>9123456780</td><td>2026-05-16</td><td>7:00 PM</td><td>2 People</td><td><span class="badge badge-pending">pending</span></td></tr>
+      <tr><td>3</td><td>Fatima Khan</td><td>9988776655</td><td>2026-05-17</td><td>9:00 PM</td><td>6 People</td><td><span class="badge badge-pending">pending</span></td></tr>
+    `;
+  }
+}
+
+loadStats();
+loadReservations();
+</script>
+</body>
+</html>
