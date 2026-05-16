@@ -39,10 +39,26 @@ document.addEventListener('DOMContentLoaded', () => {
   initTestimonialSlider();
   initMenuFilter();
   initScrollAnimations();
+  initImageFallbacks();
   setMinDate();
   generateQRCode();
   initParallax();
 });
+
+function initImageFallbacks() {
+  document.querySelectorAll('img[data-fallback]').forEach(img => {
+    if (img.dataset.fallbackReady === 'true') return;
+    img.dataset.fallbackReady = 'true';
+    img.addEventListener('error', () => {
+      const fallback = img.dataset.fallback;
+      if (fallback && img.src.indexOf(fallback) === -1) {
+        img.src = fallback;
+      }
+    }, { once: true });
+  });
+}
+
+initImageFallbacks();
 
 // ══════════════════════ NAVBAR ══════════════════════
 function initNavbar() {
@@ -401,10 +417,40 @@ function appendChat(text, type) {
 }
 
 // ══════════════════════ RESERVATION ══════════════════════
-function submitReservation(e) {
+async function postJson(url, payload) {
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok || data.success === false) {
+    throw new Error(data.error || 'Request failed');
+  }
+  return data;
+}
+
+async function submitReservation(e) {
   e.preventDefault();
-  showToast('🎉 Reservation confirmed! We\'ll call you shortly to confirm.');
-  e.target.reset();
+  const form = e.target;
+  const inputs = form.querySelectorAll('input, select, textarea');
+  const payload = {
+    name: inputs[0].value.trim(),
+    phone: inputs[1].value.trim(),
+    date: inputs[2].value,
+    time: inputs[3].value,
+    guests: inputs[4].value,
+    occasion: inputs[5].value,
+    requests: inputs[6].value.trim()
+  };
+
+  try {
+    const data = await postJson('/api/reservations', payload);
+    showToast(data.message || '🎉 Reservation confirmed! We\'ll call you shortly to confirm.');
+    form.reset();
+  } catch (err) {
+    showToast(`Reservation not saved: ${err.message}`);
+  }
 }
 
 function setMinDate() {
@@ -416,10 +462,24 @@ function setMinDate() {
 }
 
 // ══════════════════════ CONTACT ══════════════════════
-function submitContact(e) {
+async function submitContact(e) {
   e.preventDefault();
-  showToast('✅ Message sent! We\'ll get back to you within 24 hours.');
-  e.target.reset();
+  const form = e.target;
+  const inputs = form.querySelectorAll('input, textarea');
+  const payload = {
+    name: inputs[0].value.trim(),
+    email: inputs[1].value.trim(),
+    phone: inputs[2].value.trim(),
+    message: inputs[3].value.trim()
+  };
+
+  try {
+    const data = await postJson('/api/contact', payload);
+    showToast(data.message || '✅ Message sent! We\'ll get back to you within 24 hours.');
+    form.reset();
+  } catch (err) {
+    showToast(`Message not saved: ${err.message}`);
+  }
 }
 
 // ══════════════════════ TOAST ══════════════════════
@@ -455,6 +515,44 @@ function switchTab(tab, btn) {
   } else {
     loginForm.classList.add('hidden');
     signupForm.classList.remove('hidden');
+  }
+}
+
+async function submitSignup() {
+  const inputs = document.querySelectorAll('#signupForm input');
+  const payload = {
+    name: inputs[0].value.trim(),
+    email: inputs[1].value.trim(),
+    password: inputs[2].value
+  };
+
+  try {
+    const data = await postJson('/api/auth/signup', payload);
+    showToast(data.message || 'Account created! Welcome to Thamaq 🎉');
+    document.querySelectorAll('#signupForm input').forEach(input => { input.value = ''; });
+    closeModal('loginModal');
+  } catch (err) {
+    showToast(`Signup failed: ${err.message}`);
+  }
+}
+
+async function submitLogin() {
+  const inputs = document.querySelectorAll('#loginForm input');
+  const payload = {
+    email: inputs[0].value.trim(),
+    password: inputs[1].value
+  };
+
+  try {
+    const data = await postJson('/api/auth/login', payload);
+    if (data.user) {
+      localStorage.setItem('thamaq-user', JSON.stringify(data.user));
+    }
+    showToast('Logged in successfully! 🎉');
+    document.querySelectorAll('#loginForm input').forEach(input => { input.value = ''; });
+    closeModal('loginModal');
+  } catch (err) {
+    showToast(`Login failed: ${err.message}`);
   }
 }
 

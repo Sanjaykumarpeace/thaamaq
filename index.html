@@ -14,6 +14,9 @@
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
+  <link rel="preload" as="image" href="src/thaamaq-logo.jpeg" />
+  <link rel="preload" as="image" href="src/thaamaq-entry1.jpeg" />
+  <link rel="preload" as="image" href="src/thaamaq-dishes/dish-1.jpeg" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -21,14 +24,14 @@
 <!-- ══════════════════════ NOTIFICATION BANNER ══════════════════════ -->
 <div class="notif-banner" id="notifBanner">
   <span>🔥 Special Offer: Get 20% off on orders above ₹500 — Use code <strong>THAMAQ20</strong></span>
-  <button class="notif-close" onclick="document.getElementById('notifBanner').style.display='none'">✕</button>
+  <button class="notif-close" onclick="document.getElementById('notifBanner').style.display='none';document.body.classList.add('banner-hidden')">✕</button>
 </div>
 
 <!-- ══════════════════════ NAVIGATION ══════════════════════ -->
 <nav class="navbar" id="navbar">
   <div class="nav-container">
     <a href="#home" class="logo">
-      <span class="logo-icon">🍽</span>
+      <img src="src/thaamaq-logo.jpeg" alt="Thamaq Restaurant logo" class="logo-icon" width="48" height="48" decoding="async" />
       <div>
         <span class="logo-name">THAMAQ</span>
         <span class="logo-sub">RESTAURANT</span>
@@ -44,6 +47,9 @@
     </ul>
 
     <div class="nav-actions">
+      <a href="https://www.zomato.com/bangalore/thamaq-restaurant-yelahanka-bangalore/order" target="_blank" rel="noopener" class="nav-zomato" aria-label="Order on Zomato">
+        <img src="src/zomato-icon.png" alt="" width="20" height="20" decoding="async" />
+      </a>
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
         <i class="fas fa-sun" id="themeIcon"></i>
       </button>
@@ -76,9 +82,17 @@
     <p class="hero-sub">From sizzling Tandoor to aromatic Biryanis — a culinary journey across India, Arabia & beyond.</p>
     <div class="hero-btns">
       <button class="btn-primary lg" onclick="scrollTo('menu')">Explore Menu</button>
+      <a href="https://www.zomato.com/bangalore/thamaq-restaurant-yelahanka-bangalore/order" target="_blank" rel="noopener" class="btn-zomato lg">
+        <img src="src/zomato-icon.png" alt="" width="24" height="24" decoding="async" /> Order on Zomato
+      </a>
       <button class="btn-ghost lg" onclick="scrollTo('reservation')">
         <i class="fas fa-calendar-alt"></i> Reserve a Table
       </button>
+    </div>
+    <div class="hero-dish-strip" aria-label="Popular dishes">
+      <img src="src/thaamaq-dishes/dish-1.jpeg" alt="Thamaq signature biryani" width="92" height="92" decoding="async" />
+      <img src="src/thaamaq-dishes/dish-2.jpeg" alt="Thamaq grilled starter" width="92" height="92" decoding="async" />
+      <img src="src/thaamaq-dishes/dish-3.jpeg" alt="Thamaq tandoori platter" width="92" height="92" decoding="async" />
     </div>
     <div class="hero-stats">
       <div class="stat"><span class="stat-num" data-target="150">0</span><span>+</span><small>Dishes</small></div>
@@ -122,7 +136,7 @@
 
     <div class="featured-grid">
       <div class="feat-card feat-large" data-aos="fade-right">
-        <img src="https://images.unsplash.com/photo-1567337710282-00832b415979?w=700&q=80" alt="Chicken Biryani" class="feat-img" />
+        <img src="src/thaamaq-dishes/dish-1.jpeg" alt="Chicken Biryani" class="feat-img" loading="lazy" decoding="async" />
         <div class="feat-overlay">
           <span class="feat-tag">Bestseller</span>
           <h3>Hyderabadi Chicken Biryani</h3>
@@ -136,7 +150,7 @@
 
       <div class="feat-col">
         <div class="feat-card" data-aos="fade-up" data-aos-delay="100">
-          <img src="https://images.unsplash.com/photo-1598514982205-f36b96d1e9db?w=400&q=80" alt="Alfaham" class="feat-img" />
+          <img src="src/thaamaq-dishes/dish-5.jpeg" alt="Alfaham" class="feat-img" loading="lazy" decoding="async" />
           <div class="feat-overlay">
             <span class="feat-tag">Arabian</span>
             <h3>Alfaham Grilled Chicken</h3>
@@ -148,7 +162,7 @@
         </div>
 
         <div class="feat-card" data-aos="fade-up" data-aos-delay="200">
-          <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=80" alt="Tandoori" class="feat-img" />
+          <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=900&q=90" data-fallback="src/thaamaq-dishes/dish-12.jpeg" alt="Tandoori" class="feat-img" loading="lazy" decoding="async" />
           <div class="feat-overlay">
             <span class="feat-tag">Tandoor</span>
             <h3>Tandoori Platter</h3>
@@ -173,7 +187,7 @@
       <button class="btn-primary lg" onclick="scrollTo('reservation')">Grab the Deal</button>
     </div>
     <div class="offer-img-wrap" data-aos="fade-left">
-      <img src="https://images.unsplash.com/photo-1567337710282-00832b415979?w=500&q=80" alt="Family Feast" class="offer-img" />
+      <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1000&q=90" data-fallback="src/thaamaq-dishes/dish-4.jpeg" alt="Family Feast" class="offer-img" loading="lazy" decoding="async" />
       <div class="offer-badge">SAVE<br/>30%</div>
     </div>
   </div>
@@ -206,7 +220,7 @@
     <div class="menu-grid" id="menuGrid">
       <!-- Indian -->
       <div class="menu-card" data-cat="indian" data-name="chicken biryani">
-        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1567337710282-00832b415979?w=300&q=70" alt="Chicken Biryani" /><span class="veg-dot non-veg"></span></div>
+        <div class="menu-img-wrap"><img src="src/thaamaq-dishes/dish-1.jpeg" alt="Chicken Biryani" loading="lazy" decoding="async" /><span class="veg-dot non-veg"></span></div>
         <div class="menu-info">
           <h4>Chicken Biryani</h4>
           <p>Aromatic basmati, tender chicken, golden saffron</p>
@@ -215,7 +229,7 @@
       </div>
 
       <div class="menu-card" data-cat="indian" data-name="mutton biryani">
-        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1630851840628-48c25bc6e3a0?w=300&q=70" alt="Mutton Biryani" /><span class="veg-dot non-veg"></span></div>
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1630851840633-f96999247032?auto=format&fit=crop&w=900&q=90" data-fallback="src/thaamaq-dishes/dish-2.jpeg" alt="Mutton Biryani" loading="lazy" decoding="async" /><span class="veg-dot non-veg"></span></div>
         <div class="menu-info">
           <h4>Mutton Biryani</h4>
           <p>Slow-cooked mutton with whole spices & caramelised onions</p>
@@ -224,7 +238,7 @@
       </div>
 
       <div class="menu-card" data-cat="indian" data-name="butter chicken">
-        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=300&q=70" alt="Butter Chicken" /><span class="veg-dot non-veg"></span></div>
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=900&q=90" data-fallback="src/thaamaq-dishes/dish-3.jpeg" alt="Butter Chicken" loading="lazy" decoding="async" /><span class="veg-dot non-veg"></span></div>
         <div class="menu-info">
           <h4>Butter Chicken</h4>
           <p>Silky tomato-cream gravy with tandoor-kissed chicken</p>
@@ -233,7 +247,7 @@
       </div>
 
       <div class="menu-card" data-cat="indian" data-name="paneer tikka">
-        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1618449840665-9ed506d73a34?w=300&q=70" alt="Paneer Tikka" /><span class="veg-dot veg"></span></div>
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=900&q=90" data-fallback="src/thaamaq-dishes/dish-4.jpeg" alt="Paneer Tikka" loading="lazy" decoding="async" /><span class="veg-dot veg"></span></div>
         <div class="menu-info">
           <h4>Paneer Tikka</h4>
           <p>Char-grilled paneer cubes marinated in yogurt & spices</p>
@@ -243,7 +257,7 @@
 
       <!-- Arabian -->
       <div class="menu-card" data-cat="arabian" data-name="alfaham grilled chicken">
-        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1598514982205-f36b96d1e9db?w=300&q=70" alt="Alfaham" /><span class="veg-dot non-veg"></span></div>
+        <div class="menu-img-wrap"><img src="src/thaamaq-dishes/dish-5.jpeg" alt="Alfaham" loading="lazy" decoding="async" /><span class="veg-dot non-veg"></span></div>
         <div class="menu-info">
           <h4>Alfaham Grilled Chicken</h4>
           <p>Whole chicken with Arabic spice blend, charcoal grilled</p>
@@ -252,7 +266,7 @@
       </div>
 
       <div class="menu-card" data-cat="arabian" data-name="arabic grilled fish">
-        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1614976633082-21e8f3e6a8e3?w=300&q=70" alt="Grilled Fish" /><span class="veg-dot non-veg"></span></div>
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?auto=format&fit=crop&w=900&q=90" data-fallback="src/thaamaq-dishes/dish-6.jpeg" alt="Grilled Fish" loading="lazy" decoding="async" /><span class="veg-dot non-veg"></span></div>
         <div class="menu-info">
           <h4>Arabic Grilled Fish</h4>
           <p>Fresh pomfret with lemon, herbs & Arabian marinade</p>
@@ -262,7 +276,7 @@
 
       <!-- Chinese -->
       <div class="menu-card" data-cat="chinese" data-name="manchow soup">
-        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=300&q=70" alt="Manchow Soup" /><span class="veg-dot non-veg"></span></div>
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=900&q=90" data-fallback="src/thaamaq-dishes/dish-7.jpeg" alt="Manchow Soup" loading="lazy" decoding="async" /><span class="veg-dot non-veg"></span></div>
         <div class="menu-info">
           <h4>Manchow Soup</h4>
           <p>Hot & sour broth with crispy noodles & veggies</p>
@@ -271,7 +285,7 @@
       </div>
 
       <div class="menu-card" data-cat="chinese" data-name="chilli chicken">
-        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=300&q=70" alt="Chilli Chicken" /><span class="veg-dot non-veg"></span></div>
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=900&q=90" data-fallback="src/thaamaq-dishes/dish-8.jpeg" alt="Chilli Chicken" loading="lazy" decoding="async" /><span class="veg-dot non-veg"></span></div>
         <div class="menu-info">
           <h4>Chilli Chicken</h4>
           <p>Crispy fried chicken tossed in fiery Indo-Chinese sauce</p>
@@ -280,7 +294,7 @@
       </div>
 
       <div class="menu-card" data-cat="chinese" data-name="hakka noodles">
-        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1555126634-323283e090fa?w=300&q=70" alt="Hakka Noodles" /><span class="veg-dot veg"></span></div>
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=900&q=90" data-fallback="src/thaamaq-dishes/dish-9.jpeg" alt="Hakka Noodles" loading="lazy" decoding="async" /><span class="veg-dot veg"></span></div>
         <div class="menu-info">
           <h4>Veg Hakka Noodles</h4>
           <p>Stir-fried noodles with crisp vegetables & soy sauce</p>
@@ -290,7 +304,7 @@
 
       <!-- Continental -->
       <div class="menu-card" data-cat="continental" data-name="pasta arabiata">
-        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?w=300&q=70" alt="Pasta" /><span class="veg-dot veg"></span></div>
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?auto=format&fit=crop&w=900&q=90" data-fallback="src/thaamaq-dishes/dish-10.jpeg" alt="Pasta" loading="lazy" decoding="async" /><span class="veg-dot veg"></span></div>
         <div class="menu-info">
           <h4>Penne Arrabiata</h4>
           <p>Penne in spicy tomato-garlic sauce with fresh herbs</p>
@@ -299,7 +313,7 @@
       </div>
 
       <div class="menu-card" data-cat="continental" data-name="chicken pasta">
-        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=300&q=70" alt="Chicken Pasta" /><span class="veg-dot non-veg"></span></div>
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=900&q=90" data-fallback="src/thaamaq-dishes/dish-11.jpeg" alt="Chicken Pasta" loading="lazy" decoding="async" /><span class="veg-dot non-veg"></span></div>
         <div class="menu-info">
           <h4>Creamy Chicken Pasta</h4>
           <p>Al dente pasta in a rich cream-mushroom sauce</p>
@@ -308,11 +322,47 @@
       </div>
 
       <div class="menu-card" data-cat="indian" data-name="tandoori platter">
-        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=300&q=70" alt="Tandoori Platter" /><span class="veg-dot non-veg"></span></div>
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=900&q=90" data-fallback="src/thaamaq-dishes/dish-12.jpeg" alt="Tandoori Platter" loading="lazy" decoding="async" /><span class="veg-dot non-veg"></span></div>
         <div class="menu-info">
           <h4>Tandoori Mixed Platter</h4>
           <p>Seekh kebab, chicken tikka & reshmi kebab</p>
           <div class="menu-footer"><span class="price">₹ 560</span><button class="btn-add sm" onclick="addToCart('Tandoori Platter',560)">+ Add</button></div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-cat="arabian" data-name="chicken shawarma platter">
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=900&q=90" data-fallback="src/thaamaq-dishes/dish-13.jpeg" alt="Chicken Shawarma Platter" loading="lazy" decoding="async" /><span class="veg-dot non-veg"></span></div>
+        <div class="menu-info">
+          <h4>Chicken Shawarma Platter</h4>
+          <p>Spiced chicken, garlic sauce, pickles & warm khubz</p>
+          <div class="menu-footer"><span class="price">₹ 260</span><button class="btn-add sm" onclick="addToCart('Chicken Shawarma Platter',260)">+ Add</button></div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-cat="indian" data-name="chicken lollipop">
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=900&q=90" data-fallback="src/thaamaq-dishes/dish-14.jpeg" alt="Chicken Lollipop" loading="lazy" decoding="async" /><span class="veg-dot non-veg"></span></div>
+        <div class="menu-info">
+          <h4>Chicken Lollipop</h4>
+          <p>Crisp fried chicken wings tossed with chef's spice glaze</p>
+          <div class="menu-footer"><span class="price">₹ 300</span><button class="btn-add sm" onclick="addToCart('Chicken Lollipop',300)">+ Add</button></div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-cat="arabian" data-name="grilled chicken mandi">
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=90" data-fallback="src/thaamaq-dishes/dish-15.jpeg" alt="Grilled Chicken Mandi" loading="lazy" decoding="async" /><span class="veg-dot non-veg"></span></div>
+        <div class="menu-info">
+          <h4>Grilled Chicken Mandi</h4>
+          <p>Smoky grilled chicken served with aromatic mandi rice</p>
+          <div class="menu-footer"><span class="price">₹ 480</span><button class="btn-add sm" onclick="addToCart('Grilled Chicken Mandi',480)">+ Add</button></div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-cat="continental" data-name="royal dessert cup">
+        <div class="menu-img-wrap"><img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=900&q=90" data-fallback="src/thaamaq-dishes/dish-16.jpeg" alt="Royal Dessert Cup" loading="lazy" decoding="async" /><span class="veg-dot veg"></span></div>
+        <div class="menu-info">
+          <h4>Royal Dessert Cup</h4>
+          <p>Layered chilled dessert finished with nuts and syrup</p>
+          <div class="menu-footer"><span class="price">₹ 180</span><button class="btn-add sm" onclick="addToCart('Royal Dessert Cup',180)">+ Add</button></div>
         </div>
       </div>
     </div>
@@ -328,7 +378,7 @@
         <div>
           <h4>Scan for Full Menu</h4>
           <p>Point your camera at the QR code to view our complete digital menu on Zomato</p>
-          <a href="https://www.zomato.com/bangalore/thamaq-restaurant-yelahanka-bangalore/order" target="_blank" class="btn-ghost sm">View Online Menu</a>
+          <a href="https://www.zomato.com/bangalore/thamaq-restaurant-yelahanka-bangalore/order" target="_blank" rel="noopener" class="btn-ghost sm btn-with-icon"><img src="src/zomato-icon.png" alt="" width="20" height="20" loading="lazy" decoding="async" /> View Online Menu</a>
         </div>
       </div>
     </div>
@@ -340,8 +390,8 @@
   <div class="container">
     <div class="about-grid">
       <div class="about-imgs" data-aos="fade-right">
-        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500&q=80" alt="Restaurant Interior" class="about-img about-img-main" />
-        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=300&q=80" alt="Kitchen" class="about-img about-img-sm" />
+        <img src="src/thaamaq-entry1.jpeg" alt="Thamaq Restaurant entrance" class="about-img about-img-main" loading="lazy" decoding="async" />
+        <img src="src/thaamaq-3.jpeg" alt="Thamaq dining space" class="about-img about-img-sm" loading="lazy" decoding="async" />
         <div class="about-exp-badge"><span>8+</span><small>Years of<br/>Excellence</small></div>
       </div>
       <div class="about-text" data-aos="fade-left">
@@ -364,11 +414,11 @@
       <h2 class="section-title">A Visual <span class="accent">Feast</span></h2>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-item gi-tall"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80" alt="Interior" /></div>
-      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1567337710282-00832b415979?w=400&q=80" alt="Biryani" /></div>
-      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1598514982205-f36b96d1e9db?w=400&q=80" alt="Alfaham" /></div>
-      <div class="gallery-item gi-wide"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Kitchen" /></div>
-      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=80" alt="Tandoori" /></div>
+      <div class="gallery-item gi-tall"><img src="src/thaamaq-2.jpeg" alt="Thamaq restaurant view" loading="lazy" decoding="async" /></div>
+      <div class="gallery-item"><img src="src/thaamaq-dishes/dish-5.jpeg" alt="Alfaham" loading="lazy" decoding="async" /></div>
+      <div class="gallery-item"><img src="src/thaamaq-dishes/dish-6.jpeg" alt="Grilled fish" loading="lazy" decoding="async" /></div>
+      <div class="gallery-item gi-wide"><img src="src/thaamaq-4.jpeg" alt="Thamaq dining ambience" loading="lazy" decoding="async" /></div>
+      <div class="gallery-item"><img src="src/thaamaq-dishes/dish-12.jpeg" alt="Tandoori platter" loading="lazy" decoding="async" /></div>
     </div>
 
     <!-- Team -->
@@ -530,10 +580,10 @@
           <p>Monday – Sunday<br/>12:00 PM – 1:00 AM</p>
         </div>
         <div class="social-links">
-          <a href="#" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-          <a href="https://www.zomato.com/bangalore/thamaq-restaurant-yelahanka-bangalore/order" target="_blank" class="social-btn" aria-label="Zomato"><i class="fas fa-utensils"></i></a>
-          <a href="#" class="social-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://instagram.com/thamaqrestaurant?igshid=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><img src="src/instagram-icon2.jpg" alt="" class="social-icon-img" width="28" height="28" loading="lazy" decoding="async" /></a>
+          <a href="#" class="social-btn" aria-label="Facebook"><img src="src/facebook-icon.png" alt="" class="social-icon-img" width="28" height="28" loading="lazy" decoding="async" /></a>
+          <a href="https://www.zomato.com/bangalore/thamaq-restaurant-yelahanka-bangalore/order" target="_blank" rel="noopener" class="social-btn" aria-label="Zomato"><img src="src/zomato-icon.png" alt="" class="social-icon-img" width="28" height="28" loading="lazy" decoding="async" /></a>
+          <a href="https://wa.me/917902227103" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp"><img src="src/whatsapp-icon.jpeg" alt="" class="social-icon-img" width="28" height="28" loading="lazy" decoding="async" /></a>
         </div>
       </div>
 
@@ -569,7 +619,7 @@
 <footer class="footer">
   <div class="footer-top">
     <div class="footer-brand">
-      <a href="#home" class="logo"><span class="logo-icon">🍽</span><div><span class="logo-name">THAMAQ</span><span class="logo-sub">RESTAURANT</span></div></a>
+      <a href="#home" class="logo"><img src="src/thaamaq-logo.jpeg" alt="Thamaq Restaurant logo" class="logo-icon" width="48" height="48" loading="lazy" decoding="async" /><div><span class="logo-name">THAMAQ</span><span class="logo-sub">RESTAURANT</span></div></a>
       <p>Authentic flavours from India, Arabia & beyond. Serving Bengaluru since 2016.</p>
     </div>
     <div class="footer-links">
@@ -585,7 +635,7 @@
     <div class="footer-links">
       <h5>Order Online</h5>
       <ul>
-        <li><a href="https://www.zomato.com/bangalore/thamaq-restaurant-yelahanka-bangalore/order" target="_blank">Zomato</a></li>
+        <li><a href="https://www.zomato.com/bangalore/thamaq-restaurant-yelahanka-bangalore/order" target="_blank" rel="noopener" class="footer-zomato"><img src="src/zomato-icon.png" alt="" width="18" height="18" loading="lazy" decoding="async" /> Zomato</a></li>
         <li><a href="https://www.swiggy.com" target="_blank">Swiggy</a></li>
       </ul>
     </div>
@@ -594,9 +644,10 @@
       <p><i class="fas fa-phone"></i> +91 07902227103</p>
       <p><i class="fas fa-clock"></i> Mon–Sun: 12 PM – 1 AM</p>
       <div class="social-links" style="margin-top:1rem">
-        <a href="#" class="social-btn sm"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="social-btn sm"><i class="fab fa-facebook"></i></a>
-        <a href="#" class="social-btn sm"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://instagram.com/thamaqrestaurant?igshid=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener" class="social-btn sm" aria-label="Instagram"><img src="src/instagram-icon2.jpg" alt="" class="social-icon-img" width="24" height="24" loading="lazy" decoding="async" /></a>
+        <a href="#" class="social-btn sm" aria-label="Facebook"><img src="src/facebook-icon.png" alt="" class="social-icon-img" width="24" height="24" loading="lazy" decoding="async" /></a>
+        <a href="https://www.zomato.com/bangalore/thamaq-restaurant-yelahanka-bangalore/order" target="_blank" rel="noopener" class="social-btn sm" aria-label="Zomato"><img src="src/zomato-icon.png" alt="" class="social-icon-img" width="24" height="24" loading="lazy" decoding="async" /></a>
+        <a href="https://wa.me/917902227103" target="_blank" rel="noopener" class="social-btn sm" aria-label="WhatsApp"><img src="src/whatsapp-icon.jpeg" alt="" class="social-icon-img" width="24" height="24" loading="lazy" decoding="async" /></a>
       </div>
     </div>
   </div>
@@ -656,13 +707,13 @@
     <div id="loginForm">
       <div class="form-group"><input type="email" placeholder="Email" /></div>
       <div class="form-group"><input type="password" placeholder="Password" /></div>
-      <button class="btn-primary full" onclick="showToast('Logged in successfully! 🎉')">Login</button>
+      <button class="btn-primary full" onclick="submitLogin()">Login</button>
     </div>
     <div id="signupForm" class="hidden">
       <div class="form-group"><input type="text" placeholder="Full Name" /></div>
       <div class="form-group"><input type="email" placeholder="Email" /></div>
       <div class="form-group"><input type="password" placeholder="Password" /></div>
-      <button class="btn-primary full" onclick="showToast('Account created! Welcome to Thamaq 🎉')">Create Account</button>
+      <button class="btn-primary full" onclick="submitSignup()">Create Account</button>
     </div>
   </div>
 </div>

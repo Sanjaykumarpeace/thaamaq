@@ -18,7 +18,9 @@
       width: 240px; background: var(--bg2); border-right: 1px solid var(--border);
       padding: 2rem 1rem; display: flex; flex-direction: column; gap: .5rem; flex-shrink: 0;
     }
-    .sidebar-logo { font-family: 'Bebas Neue'; font-size: 1.5rem; color: var(--red); letter-spacing: .1em; margin-bottom: 1.5rem; padding-left: .75rem; }
+    .sidebar-logo { display: flex; align-items: center; gap: .65rem; font-family: 'Bebas Neue'; font-size: 0; color: var(--red); letter-spacing: .1em; margin-bottom: 1.5rem; padding-left: .75rem; }
+    .sidebar-logo::before { content: ""; width: 36px; height: 36px; border-radius: 50%; flex: 0 0 36px; background: #fff url("src/thaamaq-logo.jpeg") center / cover no-repeat; box-shadow: 0 0 0 1px rgba(255,255,255,.14); }
+    .sidebar-logo::after { content: "THAMAQ"; font-size: 1.5rem; }
     .sidebar-item {
       display: flex; align-items: center; gap: .75rem;
       padding: .75rem; border-radius: 8px;
@@ -57,7 +59,7 @@
 <body>
 
 <nav class="sidebar">
-  <div class="sidebar-logo">🍽 THAMAQ</div>
+  <div class="sidebar-logo" aria-label="Thamaq admin"></div>
   <div class="sidebar-item active"><i class="fas fa-chart-bar"></i><span>Dashboard</span></div>
   <div class="sidebar-item"><i class="fas fa-calendar-check"></i><span>Reservations</span></div>
   <div class="sidebar-item"><i class="fas fa-shopping-bag"></i><span>Orders</span></div>
